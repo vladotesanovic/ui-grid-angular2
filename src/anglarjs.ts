@@ -82,6 +82,9 @@ export function initAngularjs() {
 
   return angular.module('ng1Module', ['ui.grid', 'ui.grid.grouping', 'ui.grid.edit', 'ui.grid.selection'])
     .component('ui-grid', ng1Component)
+    .component('ng1', {
+      template: 'Hello angular 2'
+    })
     .directive('appHome', downgradeComponent({ component: HomeComponent }))
     .directive('appRoot', downgradeComponent({ component: AppComponent }));
 }

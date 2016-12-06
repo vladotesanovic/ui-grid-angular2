@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 
 import { RouterModule } from "@angular/router";
 import { UpgradeModule } from "@angular/upgrade/static";
 import { AboutComponent } from "./about/about.component";
-import { Ng1ComponentFacade } from "../ng1/grid.directive";
+import { Ng1TestComponentFacade } from "./ng1/grid.directive";
 
 @NgModule({
   imports: [
@@ -21,8 +21,11 @@ import { Ng1ComponentFacade } from "../ng1/grid.directive";
   declarations: [
     HomeComponent,
     AboutComponent,
-    Ng1ComponentFacade
+    Ng1TestComponentFacade
   ],
-  bootstrap: [HomeComponent]
+  bootstrap: [HomeComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class HomeModule {}

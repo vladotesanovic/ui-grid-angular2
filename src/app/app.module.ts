@@ -50,7 +50,6 @@ import { AngularjsResolver } from "./route1/route1.resolver";
   ],
   providers: [AngularjsResolver],
   bootstrap: [AppComponent],
-  entryComponents: [GridComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]
