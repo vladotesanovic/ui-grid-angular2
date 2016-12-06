@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -8,11 +8,16 @@ import { RouterModule } from "@angular/router";
 import { UpgradeModule } from "@angular/upgrade/static";
 import { Ng1ComponentFacade } from "./ng1/directive";
 import { GridComponent } from "./ng1/grid.component";
+import { Route1Component } from "./route1/route1.component";
+import { Route2Component } from "./route2/route2.component";
+import { AngularjsResolver } from "./route1/route1.resolver";
 
 @NgModule({
   declarations: [
     AppComponent,
+    Route1Component,
     GridComponent,
+    Route2Component,
     Ng1ComponentFacade
   ],
   imports: [
@@ -21,14 +26,33 @@ import { GridComponent } from "./ng1/grid.component";
     HttpModule,
     UpgradeModule,
     RouterModule.forRoot([
-      { path: "", pathMatch: "full", redirectTo: "home"},
+      {
+        path: "",
+        pathMatch: "full",
+        redirectTo: "home"
+      },
+      {
+        path: "route1",
+        component: Route1Component,
+        resolve: {
+          test: AngularjsResolver
+        }
+      },
+      {
+        path: "route2",
+        component: Route2Component,
+        resolve: {
+          test: AngularjsResolver
+        }
+      },
       { loadChildren: "app/home/home.module#HomeModule", path: "home" }
     ], { useHash: true }),
   ],
-  providers: [],
-  // bootstrap: [AppComponent],
-  entryComponents: [GridComponent]
+  providers: [AngularjsResolver],
+  bootstrap: [AppComponent],
+  entryComponents: [GridComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
-export class AppModule {
-  ngDoBootstrap() {}
-}
+export class AppModule {}

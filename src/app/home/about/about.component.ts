@@ -4,10 +4,11 @@ import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/map";
 
 @Component({
-  selector: 'app-grid',
-  template: '<ui-grid [data]="myData"></ui-grid>',
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
 })
-export class GridComponent {
+export class AboutComponent {
   myData = [];
   constructor(public http: Http) {
 
