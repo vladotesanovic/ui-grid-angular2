@@ -2,13 +2,13 @@ import * as angular from "angular";
 import { downgradeComponent } from "@angular/upgrade/static";
 
 import { AppComponent } from "./app/app.component";
-import { HomeComponent } from "./app/home/home.component";
 
 export function initAngularjs() {
 
   const ng1Component: angular.IComponentOptions = {
     bindings: {
-      data: '<'
+      data: '<',
+      onUpdate: '&'
     },
     transclude: true,
     controller: ['$scope', 'uiGridConstants', function($scope, uiGridConstants) {
@@ -27,12 +27,25 @@ export function initAngularjs() {
         }
       };
 
+      $scope.msg = {};
+
       $scope.gridOptions = {
         enableFiltering: true,
         showGridFooter: true,
         showColumnFooter: true,
         onRegisterApi: function (gridApi) {
+
           $scope.gridApi = gridApi;
+          gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
+            $scope.msg.lastCellEdited = 'edited row id:' + rowEntity.id + ' Column:' + colDef.name + ' newValue:' + newValue + ' oldValue:' + oldValue;
+            ctrl.onUpdate({
+              "rowId": rowEntity.id,
+              "column": colDef.name,
+              "new": newValue,
+              "old": oldValue
+            });
+            $scope.$apply();
+          });
         }
       };
 
@@ -77,7 +90,7 @@ export function initAngularjs() {
       this.$onInit = function() {}
 
     }],
-    template: 'Hello, Angular 2 from angular 1! <div ui-grid="gridOptions" ui-grid-grouping ui-grid-edit ui-grid-selection class="grid" style="width:100%;"></div>'
+    template: 'Hello, Angular 2 from angular 1! <div ui-grid="gridOptions" ui-grid-grouping ui-grid-edit ui-grid-selection class="grid" style="width:100%;"></div> {{msg.lastCellEdited}}'
   };
 
   const ng1Component2: angular.IComponentOptions = {

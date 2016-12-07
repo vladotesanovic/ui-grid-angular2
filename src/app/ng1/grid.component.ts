@@ -5,10 +5,11 @@ import "rxjs/add/operator/map";
 
 @Component({
   selector: 'app-grid',
-  template: '<ui-grid [data]="myData"></ui-grid>',
+  template: `<ui-grid [data]="myData" (onUpdate)="onUpdate($event)"></ui-grid><pre>{{ data | json }}</pre>`,
 })
 export class GridComponent {
   myData = [];
+  data: {};
   constructor(public http: Http) {
 
     this.http
@@ -18,4 +19,9 @@ export class GridComponent {
         this.myData = data;
       });
   }
+
+  onUpdate(data: {}) {
+    this.data = data;
+  }
+
 }

@@ -1,6 +1,6 @@
 import {
   Directive, ElementRef, Injector, Input, OnInit, SimpleChanges, OnChanges, DoCheck,
-  OnDestroy
+  OnDestroy, Output, EventEmitter
 } from "@angular/core";
 import { UpgradeComponent } from "@angular/upgrade/static";
 
@@ -9,6 +9,8 @@ export class Ng1ComponentFacade extends UpgradeComponent implements OnInit, OnCh
   OnDestroy {
 
   @Input() data: {};
+  @Output() onUpdate: EventEmitter<{}>;
+
   constructor(elementRef: ElementRef, injector: Injector) {
     super('ui-grid', elementRef, injector);
   }
