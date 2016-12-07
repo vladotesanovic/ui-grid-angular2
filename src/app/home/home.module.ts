@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 
 import { RouterModule } from "@angular/router";
-import { UpgradeModule } from "@angular/upgrade/static";
 import { AboutComponent } from "./about/about.component";
 import { Ng1TestComponentFacade } from "./ng1/grid.directive";
+import { GridComponent } from "./ng1/grid.component";
 
 @NgModule({
   imports: [
@@ -13,13 +13,15 @@ import { Ng1TestComponentFacade } from "./ng1/grid.directive";
     RouterModule.forChild([{
       path: "", component: HomeComponent,
       children: [{
-        path: "about", component: AboutComponent
+        path: "about",
+        component: AboutComponent
       }]
     }])
   ],
   declarations: [
     HomeComponent,
     AboutComponent,
+    GridComponent,
     Ng1TestComponentFacade
   ],
   bootstrap: [HomeComponent],
