@@ -10,7 +10,6 @@ import { Ng1TestComponentFacade } from "./ng1/grid.directive";
 @NgModule({
   imports: [
     CommonModule,
-    UpgradeModule,
     RouterModule.forChild([{
       path: "", component: HomeComponent,
       children: [{
