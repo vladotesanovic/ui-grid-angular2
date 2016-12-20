@@ -49,9 +49,11 @@ import { AngularjsResolver } from "./route1/route1.resolver";
     ], { useHash: true }),
   ],
   providers: [AngularjsResolver],
-  bootstrap: [AppComponent],
+  entryComponents: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class AppModule {}
+export class AppModule {
+  ngDoBootstrap() {}
+}
