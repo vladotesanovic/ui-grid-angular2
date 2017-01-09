@@ -7,7 +7,7 @@ import "rxjs/add/operator/map";
   selector: 'app-grid',
   template: `<ui-grid [data]="myData" (onUpdate)="onUpdate($event)"></ui-grid><pre>{{ data | json }}</pre>`,
 })
-export class GridComponent {
+export class GridComponent{
   myData = [];
   data: {};
 

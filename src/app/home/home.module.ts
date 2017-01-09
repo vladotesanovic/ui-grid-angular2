@@ -16,7 +16,8 @@ import { SharedModule } from "../shared/shared.module";
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild([{
-      path: "", component: HomeComponent,
+      path: "",
+      component: HomeComponent,
       children: [{
         path: "about",
         component: AboutComponent

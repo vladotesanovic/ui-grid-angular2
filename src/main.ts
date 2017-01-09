@@ -6,6 +6,7 @@ import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
 import { UpgradeModule } from "@angular/upgrade/src/aot/upgrade_module";
 import { initAngularjs } from "./anglarjs";
+import { Router } from "@angular/router";
 
 if (environment.production) {
   enableProdMode();
@@ -23,4 +24,5 @@ promise.then((platformRef: { injector: { get: Function }}) => {
 
   const upgrade: UpgradeModule = platformRef.injector.get(UpgradeModule) as UpgradeModule;
   upgrade.bootstrap(document.body, ["ng1Module"], { strictDi: true });
+  platformRef.injector.get(Router).initialNavigation();
 });

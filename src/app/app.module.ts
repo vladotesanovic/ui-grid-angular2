@@ -39,7 +39,12 @@ import { Route2Component } from "./route2/route2.component";
         component: Route2Component
       },
       { loadChildren: "app/home/home.module#HomeModule", path: "home" }
-    ], { useHash: true }),
+    ],
+      {
+        useHash: true,
+        initialNavigation: false,
+        enableTracing: true
+      }),
   ],
   entryComponents: [
     AppComponent
