@@ -7,8 +7,7 @@
     "start": "ng serve --port 3388",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
-    "build": "ng build",
-    "aot": "ng build --aot=true --sm=false --prod",
+    "build": "ng build --prod --sm=false --aot=true",s
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
