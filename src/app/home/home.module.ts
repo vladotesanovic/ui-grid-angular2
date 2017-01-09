@@ -6,10 +6,15 @@ import { RouterModule } from "@angular/router";
 import { AboutComponent } from "./about/about.component";
 import { Ng1TestComponentFacade } from "./ng1/grid.directive";
 import { GridComponent } from "./ng1/grid.component";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild([{
       path: "", component: HomeComponent,
       children: [{

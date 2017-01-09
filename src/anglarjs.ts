@@ -33,6 +33,10 @@ export function initAngularjs() {
         enableFiltering: true,
         showGridFooter: true,
         showColumnFooter: true,
+        enableSorting: true,
+        enableColumnResizing: true,
+        treeRowHeaderAlwaysVisible: true,
+        enableGridMenu: true,
         onRegisterApi: function (gridApi) {
 
           $scope.gridApi = gridApi;
@@ -79,7 +83,6 @@ export function initAngularjs() {
       this.$onChanges = function(obj: { data: { currentValue: Array<{}>}}) {
 
         if (obj.data.currentValue.length) {
-
           let colDefs = makeColDefs(obj.data.currentValue);
           $scope.gridOptions.data = obj.data.currentValue;
           $scope.gridOptions.columnDefs = colDefs;

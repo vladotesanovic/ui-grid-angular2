@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from "@angular/router";
 import { UpgradeModule } from "@angular/upgrade/static";
 import { Ng1ComponentFacade } from "./ng1/directive";
 import { GridComponent } from "./ng1/grid.component";
 import { Route1Component } from "./route1/route1.component";
 import { Route2Component } from "./route2/route2.component";
-import { AngularjsResolver } from "./route1/route1.resolver";
+import { SharedModule } from "./shared/shared.module";
+import { routing } from "./app.routing";
 
 @NgModule({
   declarations: [
@@ -23,35 +23,19 @@ import { AngularjsResolver } from "./route1/route1.resolver";
   imports: [
     BrowserModule,
     FormsModule,
+    SharedModule,
+    ReactiveFormsModule,
     HttpModule,
     UpgradeModule,
-    RouterModule.forRoot([
-      {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "home"
-      },
-      {
-        path: "route1",
-        component: Route1Component,
-        resolve: {
-          test: AngularjsResolver
-        }
-      },
-      {
-        path: "route2",
-        component: Route2Component,
-        resolve: {
-          test: AngularjsResolver
-        }
-      },
-      { loadChildren: "app/home/home.module#HomeModule", path: "home" }
-    ], { useHash: true }),
+    routing,
   ],
-  providers: [AngularjsResolver],
-  bootstrap: [AppComponent],
+  entryComponents: [
+    AppComponent
+  ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class AppModule {}
+export class AppModule {
+  ngDoBootstrap(): void {}
+}

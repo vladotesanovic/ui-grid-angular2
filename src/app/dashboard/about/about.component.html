@@ -1,9 +1,7 @@
 <p>
-  about works!
+  about from dashboard works!
 </p>
 <hr/>
-
-<app-grid2></app-grid2>
 
 <form #form="ngForm" (submit)="logForm(form.value)">
   <label>Firstname:</label>
@@ -23,3 +21,5 @@
 
   <button [disabled]="!form.valid" type="submit">Submit</button>
 </form>
+
+<app-shared></app-shared>

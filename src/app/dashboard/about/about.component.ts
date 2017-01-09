@@ -4,7 +4,7 @@ import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/map";
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-dashboard-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })

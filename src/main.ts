@@ -15,7 +15,12 @@ initAngularjs();
 
 export let upgrade: UpgradeModule;
 
-platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
-  upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
+// bootstrap Angular 2 application
+const promise: Promise<{}> = platformBrowserDynamic()
+  .bootstrapModule(AppModule);
+
+promise.then((platformRef: { injector: { get: Function }}) => {
+
+  const upgrade: UpgradeModule = platformRef.injector.get(UpgradeModule) as UpgradeModule;
   upgrade.bootstrap(document.body, ["ng1Module"], { strictDi: true });
 });
