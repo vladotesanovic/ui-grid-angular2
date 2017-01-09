@@ -10,7 +10,6 @@ import { Ng1ComponentFacade } from "./ng1/directive";
 import { GridComponent } from "./ng1/grid.component";
 import { Route1Component } from "./route1/route1.component";
 import { Route2Component } from "./route2/route2.component";
-import { AngularjsResolver } from "./route1/route1.resolver";
 
 @NgModule({
   declarations: [
@@ -33,17 +32,11 @@ import { AngularjsResolver } from "./route1/route1.resolver";
       },
       {
         path: "route1",
-        component: Route1Component,
-        resolve: {
-          test: AngularjsResolver
-        }
+        component: Route1Component
       },
       {
         path: "route2",
-        component: Route2Component,
-        resolve: {
-          test: AngularjsResolver
-        }
+        component: Route2Component
       },
       { loadChildren: "app/home/home.module#HomeModule", path: "home" }
     ], { useHash: true }),
