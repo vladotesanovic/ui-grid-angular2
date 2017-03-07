@@ -1,25 +1,20 @@
-import { enableProdMode, forwardRef } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
 import { initAngularjs } from "./anglarjs";
 import { Router } from "@angular/router";
-import { UpgradeAdapter } from "@angular/upgrade";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { UpgradeModule } from "@angular/upgrade/static";
 
 if (environment.production) {
   enableProdMode();
 }
 
-let adapter = new UpgradeAdapter(forwardRef(()=> AppModule));
-// const et = false;
-
 // bootstrap Angular 1 application
-initAngularjs(adapter);
+initAngularjs();
 
-adapter.bootstrap(document.documentElement, ["ng1Module"]).ready((ref) => {
-  ref.ng2Injector.get(Router).initialNavigation();
+platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
+  const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
+  upgrade.bootstrap(document.documentElement, ['ng1Module']);
+  upgrade.injector.get(Router).initialNavigation();
 });
-
-// added workaround
-platformBrowserDynamic().bootstrapModule(AppModule);
-

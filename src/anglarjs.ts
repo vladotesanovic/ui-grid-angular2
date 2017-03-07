@@ -3,7 +3,7 @@ import { downgradeComponent } from "@angular/upgrade/static";
 
 import { AppComponent } from "./app/app.component";
 
-export function initAngularjs(adapter) {
+export function initAngularjs() {
 
   const ng1Component: angular.IComponentOptions = {
     bindings: {
@@ -173,5 +173,5 @@ export function initAngularjs(adapter) {
   return angular.module('ng1Module', ['ui.grid', 'ui.grid.grouping', 'ui.grid.edit', 'ui.grid.selection'])
     .component('ui-grid', ng1Component)
     .component('ng1',  ng1Component2)
-    .directive('appRoot', adapter.downgradeNg2Component(AppComponent));
+    .directive('appRoot', downgradeComponent({ component: AppComponent }));
 }
