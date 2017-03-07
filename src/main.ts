@@ -1,28 +1,25 @@
-import './polyfills.ts';
-
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, forwardRef } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
-import { UpgradeModule } from "@angular/upgrade/src/aot/upgrade_module";
 import { initAngularjs } from "./anglarjs";
 import { Router } from "@angular/router";
+import { UpgradeAdapter } from "@angular/upgrade";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 if (environment.production) {
   enableProdMode();
 }
 
-initAngularjs();
+let adapter = new UpgradeAdapter(forwardRef(()=> AppModule));
+// const et = false;
 
-export let upgrade: UpgradeModule;
+// bootstrap Angular 1 application
+initAngularjs(adapter);
 
-// bootstrap Angular 2 application
-const promise: Promise<{}> = platformBrowserDynamic()
-  .bootstrapModule(AppModule);
-
-promise.then((platformRef: { injector: { get: Function }}) => {
-
-  const upgrade: UpgradeModule = platformRef.injector.get(UpgradeModule) as UpgradeModule;
-  upgrade.bootstrap(document.body, ["ng1Module"], { strictDi: true });
-  platformRef.injector.get(Router).initialNavigation();
+adapter.bootstrap(document.documentElement, ["ng1Module"]).ready((ref) => {
+  ref.ng2Injector.get(Router).initialNavigation();
 });
+
+// added workaround
+platformBrowserDynamic().bootstrapModule(AppModule);
+

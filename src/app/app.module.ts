@@ -42,8 +42,7 @@ import { Route2Component } from "./route2/route2.component";
     ],
       {
         useHash: true,
-        initialNavigation: false,
-        enableTracing: true
+        initialNavigation: false
       }),
   ],
   entryComponents: [
