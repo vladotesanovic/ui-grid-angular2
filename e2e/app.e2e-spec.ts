@@ -1,10 +1,10 @@
-import { Grid2Page } from './app.po';
+import { A2ttPage } from './app.po';
 
-describe('grid2 App', function() {
-  let page: Grid2Page;
+describe('a2tt App', () => {
+  let page: A2ttPage;
 
   beforeEach(() => {
-    page = new Grid2Page();
+    page = new A2ttPage();
   });
 
   it('should display message saying app works', () => {

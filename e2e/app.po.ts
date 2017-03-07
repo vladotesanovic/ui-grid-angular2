@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class Grid2Page {
+export class A2ttPage {
   navigateTo() {
     return browser.get('/');
   }
