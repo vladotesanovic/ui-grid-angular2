@@ -16,5 +16,7 @@ initAngularjs();
 platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
   const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
   upgrade.bootstrap(document.documentElement, ['ng1Module']);
-  upgrade.injector.get(Router).initialNavigation();
+  upgrade.ngZone.run(() => {
+    upgrade.injector.get(Router).initialNavigation();
+  });
 });
