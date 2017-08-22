@@ -1,25 +1,23 @@
-import { Component } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { Component, OnInit } from '@angular/core';
+import { Http, Response } from '@angular/http';
 
-import "rxjs/add/operator/map";
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-grid',
-  template: `<ui-grid [data]="myData" (onUpdate)="onUpdate($event)"></ui-grid><pre>{{ data | json }}</pre>`,
+  template: `<ui-grid [data]="myData$ | async" (onUpdate)="onUpdate($event)"></ui-grid><pre>{{ data | json }}</pre>`,
 })
-export class GridComponent{
-  myData = [];
+export class GridComponent implements OnInit {
   data: {};
+  myData$: Observable<Object[]>;
 
-  constructor(public http: Http) {
+  constructor(public http: Http) {}
 
-    this.http
-      .get("https://jsonplaceholder.typicode.com/users")
-      .map((response: Response) => response.json())
-      .subscribe((data) => {
-        console.log(data);
-        this.myData = data;
-      });
+  ngOnInit() {
+    this.myData$ = this.http
+      .get('https://jsonplaceholder.typicode.com/users')
+      .map((response: Response) => response.json());
   }
 
   onUpdate(data: {}) {

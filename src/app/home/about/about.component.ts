@@ -13,7 +13,7 @@ export class AboutComponent {
   constructor(public http: Http) {
 
     this.http
-      .get("https://jsonplaceholder.typicode.com/users")
+      .get('https://jsonplaceholder.typicode.com/users')
       .map((response: Response) => response.json())
       .subscribe((data) => {
         this.myData = data;

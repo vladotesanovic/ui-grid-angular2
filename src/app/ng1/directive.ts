@@ -1,8 +1,8 @@
 import {
   Directive, ElementRef, Injector, Input, OnInit, SimpleChanges, OnChanges, DoCheck,
   OnDestroy, Output, EventEmitter
-} from "@angular/core";
-import { UpgradeComponent } from "@angular/upgrade/static";
+} from '@angular/core';
+import { UpgradeComponent } from '@angular/upgrade/static';
 
 @Directive({selector: 'ui-grid'})
 export class Ng1ComponentFacade extends UpgradeComponent implements OnInit, OnChanges, DoCheck,
